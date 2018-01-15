@@ -17,8 +17,8 @@ print(victims)
 
 
 cmd = subprocess.Popen('ifconfig ' + interface, shell=True, stdout=subprocess.PIPE)
-for str(line) in cmd.stdout:
-    if "inet" in line:
+for line in cmd.stdout:
+    if "inet" in str(line):
         print(line)
 '''
 
