@@ -29,7 +29,7 @@ def get_ip_address(ifname):
         struct.pack('256s', bytes(ifname[:15],'utf-8'))
     )[20:24])
 
-attacker_ip = get_ip_address(interface))
+attacker_ip = get_ip_address(interface)
 
 # configure routing (IPTABLES)
 os.system("echo 1 > /proc/sys/net/ipv4/ip_forward")
