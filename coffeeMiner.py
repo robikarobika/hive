@@ -8,7 +8,7 @@ print("gateway: " + gateway)
 interface = sys.argv[2]
 print("interface: " + interface)
 #get IP (attacker)
-attacker_ip = sys.argv[1]
+attacker_ip = sys.argv[3]
 print("attacker_ip: " + attacker_ip)
 # get victims_ip
 victims = [line.rstrip('\n') for line in open("victims.txt")]
