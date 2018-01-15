@@ -8,7 +8,7 @@ class Injector:
     def __init__(self, path):
         self.path = path
 
-    def response(self, flow: http.HTTPFlow):
+    def response(self, flow):
         if self.path:
             html = BeautifulSoup(flow.response.content, "html.parser")
             print(self.path)
