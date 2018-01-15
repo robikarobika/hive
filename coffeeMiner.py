@@ -1,6 +1,11 @@
 import os
 import sys
 import subprocess
+import socket
+import fcntl
+import struct
+
+
 #get gateway_ip (router)
 gateway = sys.argv[1]
 print("gateway: " + gateway)
@@ -16,10 +21,19 @@ print("victims:")
 print(victims)
 
 
-cmd = subprocess.Popen('ifconfig ' + interface, shell=True, stdout=subprocess.PIPE)
-for line in cmd.stdout:
-    if "inet" in str(line):
-        print(line)
+#cmd = subprocess.Popen('ifconfig ' + interface, shell=True, stdout=subprocess.PIPE)
+#for line in cmd.stdout:
+
+def get_ip_address(ifname):
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    return socket.inet_ntoa(fcntl.ioctl(
+        s.fileno(),
+        0x8915,  # SIOCGIFADDR
+        struct.pack('256s', ifname[:15])
+    )[20:24])
+
+print(get_ip_address(interface))
+
 '''
 
 # configure routing (IPTABLES)
