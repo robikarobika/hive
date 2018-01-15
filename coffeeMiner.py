@@ -19,7 +19,7 @@ print(victims)
 cmd = subprocess.Popen('ifconfig ' + interface, shell=True, stdout=subprocess.PIPE)
 for line in cmd.stdout:
     if inet in line:
-        print line
+        print(line)
 '''
 
 # configure routing (IPTABLES)
