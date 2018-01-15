@@ -1,7 +1,7 @@
 # Usage: mitmdump -s "js_injector.py src"
 # (this script works best with --anticache)
 from bs4 import BeautifulSoup
-from mitmproxy import ctx, http
+import mitmproxy 
 import argparse
 
 class Injector:
