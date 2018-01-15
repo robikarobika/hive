@@ -20,7 +20,7 @@ class Injector:
                     src=self.path,
                     type='application/javascript')
                 html.body.insert(0, script)
-                flow.response.content = str(html).encode("utf8")
+                flow.response.content = str(html)
                 print("Script injected.")
 
 def start():
