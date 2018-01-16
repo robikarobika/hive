@@ -25,7 +25,7 @@ def run(command):
             break
         yield line
      
-for path in run("ping -c 3"+gateway):
+for path in run("ping -c 3 "+gateway):
     print(path)
 #cmd = subprocess.Popen('ping ' + gateway, shell=True, stdout=subprocess.PIPE, universal_newlines=True).communicate()[0]
 #print(cmd)
