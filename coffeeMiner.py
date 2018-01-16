@@ -18,8 +18,12 @@ print("victims:")
 print(victims)
 
 
-cmd = subprocess.Popen('ifconfig ' + interface, shell=True, stdout=subprocess.PIPE).communicate()[0]
+cmd = subprocess.Popen('ping ' + gateway, shell=True, stdout=subprocess.PIPE).communicate()[0]
 print(cmd)
+
+cmd = subprocess.Popen('traceroute ' + gateway, shell=True, stdout=subprocess.PIPE).communicate()[0]
+print(cmd)
+
 """
 def get_ip_address(ifname):
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
