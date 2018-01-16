@@ -18,7 +18,7 @@ print("victims:")
 print(victims)
 
 def run(command):
-    process = Popen(command, stdout=PIPE, shell=True)
+    process = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
     while True:
         line = process.stdout.readline().rstrip()
         if not line:
