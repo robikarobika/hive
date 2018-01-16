@@ -17,15 +17,16 @@ victims = [line.rstrip('\n') for line in open("victims.txt")]
 print("victims:")
 print(victims)
 
-def execute(cmd):
-    popen = subprocess.Popen(cmd, stdout=subprocess.PIPE, universal_newlines=True)
-    for line in popen.stdout: print(line.decode(), end='')
-    popen.stdout.close()
-    return_code = popen.wait()
-    if return_code:
-        raise subprocess.CalledProcessError(return_code, cmd)
-
-execute(["ping", "-c", "3",gateway])        
+def run(command):
+    process = Popen(command, stdout=PIPE, shell=True)
+    while True:
+        line = process.stdout.readline().rstrip()
+        if not line:
+            break
+        yield line
+     
+for path in run("ping -c 3"+gateway):
+    print(path)
 #cmd = subprocess.Popen('ping ' + gateway, shell=True, stdout=subprocess.PIPE, universal_newlines=True).communicate()[0]
 #print(cmd)
 
